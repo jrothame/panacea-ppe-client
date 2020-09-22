@@ -1,0 +1,27 @@
+<div class="generic-modal-fixActionRow">
+  <div class="row" style="padding-top:0; margin-top: 0; border-bottom: 1px solid darkgray;">
+    <div class="col-12" style="text-align: left;">
+      <h5>{{ helper.config.labels.changelanguage.dialog_title }}</h5>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-12">
+      <label id="radio-group-label" class="lang-label">{{ helper.config.labels.changelanguage.description }}</label>
+      <br/>
+      <br/>
+      <mat-radio-group aria-labelledby="radio-group-label" [(ngModel)]="language">
+        <mat-radio-button class="lang-value" color="primary" [value]="'en'">{{ helper.config.labels.changelanguage.english_option_text }}</mat-radio-button>
+        <br/>
+        <br/>
+        <mat-radio-button class="lang-value" color="primary" [value]="'es'">{{ helper.config.labels.changelanguage.spanish_option_text }}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" style="text-align: right;">
+      <br/>
+      <button mat-raised-button color="primary" (click)="onClose()" class="custom_primary">{{ helper.config.labels.changelanguage.close_button }}</button>
+    </div>
+  </div>
+</div>

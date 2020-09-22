@@ -1,0 +1,7 @@
+.menu_bar {
+  background-color: var(--menu-bar-background-color-var) !important;;
+}
+
+.menu_bar_link {
+  color: var(--menu-bar-color-var) !important;
+}

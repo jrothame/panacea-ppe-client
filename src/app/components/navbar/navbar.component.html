@@ -1,0 +1,41 @@
+<!-- <nav class="navbar navbar-dark bg-primary menu_bar"> -->
+<!-- <style>
+  .menu_bar2 {
+    background-color: {{ menuBackgroundColor }};
+  }
+</style> -->
+<div style="text-align: center;height:70px;">
+  <img src="../../../assets/images/its-demo-logo-png-transparent.png" style="height:70px;" />
+</div>
+<nav class="navbar  navbar-light menu_bar">
+  <div class="navbar-brand">
+    <!-- <div *ngIf="!helper.data.selectedBuildingLogoUrl">&nbsp;</div> -->
+    <!-- <div *ngIf="helper.data.selectedBuildingLogoUrl" style="background-color: none; height: 70px;border: 0px solid none">
+      <img src="{{ helper.data.selectedBuildingLogoUrl }}" style="height:70px;"/>
+    </div> -->
+  </div>
+  <button class="navbar-toggler menu_bar_link" type="button" data-toggle="collapse" data-target="#collapsingNavbar1">
+    <span class="navbar-toggler-icon menu_bar_link"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="collapsingNavbar1">
+      <ul class="nav navbar-nav">        
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link menu_bar_link" (click)="iAmLost()" onclick="return false;" href="">{{ helper.config.labels.menus.lost }}</a>
+        </li>
+        <!-- <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-lin menu_bar_link" (click)="changeLanguage()" onclick="return false;" href="">{{ helper.config.labels.menus.language }}</a>
+        </li> -->
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" *ngIf="showDebugMenu">
+          <a class="nav-link menu_bar_link" routerLink="debug">Debug Page</a>
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" *ngIf="showDebugMenu">
+          <a class="nav-link menu_bar_link" routerLink="test">Test Menu</a>
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" *ngIf="showDebugMenu">
+          <a class="nav-link menu_bar_link" routerLink="customaction">Custom Action Page</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+

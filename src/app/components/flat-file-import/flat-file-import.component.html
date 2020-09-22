@@ -1,0 +1,34 @@
+<div class="App">
+    <div class="licenseAsk" *ngIf="!LICENSE_KEY">
+      Obtain your license key from the
+      <a href="https://flatfile.io/app" target="_blank">
+        Flatfile Dashboard &rarr;
+      </a>
+      <p>
+        Once you've found it, set the <code>LICENSE_KEY</code> variable on line 13
+        of <code>src/app/app.component.ts</code> before continuing.
+      </p>
+    </div>
+    <div>
+      
+    </div>
+    <label>HCPCS File:</label>
+    <select>
+      <option value="0">--Select A HCPCS File--</option>
+      <option *ngFor="let file of hcpcsFiles" value={{file.file_id}}>{{file.file_desc}}</option>
+    </select>
+    <input
+      type="button"
+      id="launch"
+      (click)="launchImporter()"
+      [ngClass]="{disabled:!LICENSE_KEY}"
+      value="Launch PPE Import Process"
+    />
+    <!--<div class="download">
+      <a href="assets/loans.csv" target="_blank" rel="noopener noreferrer">
+        Download a sample csv file here
+      </a>
+    </div>-->
+    <textarea id="raw_output" value="">{{results}}</textarea>
+  </div>
+

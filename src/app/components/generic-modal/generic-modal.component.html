@@ -1,0 +1,18 @@
+<div class="generic-modal-fixActionRow">
+ <div class="row" style="padding-top:0; margin-top: 0; border-bottom: 1px solid darkgray;">
+    <div class="col-8" style="text-align: left;">
+      <h5>{{ title }}</h5>
+    </div>
+    <div class="col-4" style="text-align: right;">
+      <button mat-raised-button color="primary" (click)="onClose('button1')" *ngIf="button1_visible">{{ button1_text}}</button>
+      <br/><br/>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-12">
+      <span [innerHTML]="message"></span>
+      <br/><br/><br/>
+    </div>
+  </div>
+</div>

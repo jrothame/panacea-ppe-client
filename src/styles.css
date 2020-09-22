@@ -1,0 +1,92 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "~@fortawesome\fontawesome-free\css\all.css";
+
+
+.app-full-bleed-dialog .mat-dialog-container {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 5px;
+}
+
+.custom_primary {
+  background-color: var(--primary-background-color-var) !important;
+  color: var(--primary-color-var) !important;
+}
+
+.action_bar {
+  background-color: #2196F3 !important;
+}
+
+.toggle_viewer_icon {
+  font-weight: bold;
+  font-size:20px;
+  background-color: none;
+  color: white;
+  cursor: pointer;
+}
+
+.mat-snack-bar-container {
+  text-align: center;
+}
+
+.mat-simple-snackbar {
+  display: inline-block !important;
+}
+
+.qr-code-class > img {
+  /* height: 235px; */
+  width: 100%;
+  max-width: 250px;
+  min-width:200px;
+  image-rendering: pixelated;
+}
+
+body {
+  --my-var: orange;
+  --menu-bar-background-color-var:none;
+  --menu-bar-color-var:none;
+  --page-background-color-var: none;
+  --primary-color-var: none;
+  --primary-background-color-var: none;
+  background-color: var(--page-background-color-var) !important;
+  min-width:320px;
+}
+
+.material-icons {
+  /* Support for IE */
+  font-feature-settings: 'liga';
+}
+
+.red-snackbar{
+  background-color: rgb(153, 50, 50);
+  color:lightgoldenrodyellow;
+}
+
+.green-snackbar{
+  background-color: rgb(29, 102, 29);
+  color:lightgreen;
+}
+
+.yellow-snackbar{
+  background-color: rgb(245, 188, 3);
+  color:black;
+}
+
+input:invalid { 
+  /* border: 2px dashed red; */
+  color: red;
+ }
+
+/* input:valid {
+  border: 2px solid black;
+} */
+
+/* .test_div
+{
+  background-color: var(--my-var);
+  color: lime;
+} */
+
+
