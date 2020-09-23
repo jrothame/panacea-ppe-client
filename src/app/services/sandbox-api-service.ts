@@ -44,7 +44,13 @@ export class SandboxApiService extends ApiService {
     return this.http.post<any>(apiURL, data);
   }
 
-  
+  getHCPCSCodesNew(fileId: string) : Observable<any>{
+
+    return this.http.get('http://localhost:59936/api/codes/hcpcs/' +  fileId);
+   
+  } 
+
+
   getHCPCSCodes(fileType: string) : Observable<any>{
 
     return this.http.get('http://localhost:59936/api/codes/hcpcs/' +  fileType);

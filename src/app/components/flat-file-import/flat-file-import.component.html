@@ -9,11 +9,8 @@
         of <code>src/app/app.component.ts</code> before continuing.
       </p>
     </div>
-    <div>
-      
-    </div>
     <label>HCPCS File:</label>
-    <select>
+    <select name="ddlHCPCS" (change)="fileSelected($event)">
       <option value="0">--Select A HCPCS File--</option>
       <option *ngFor="let file of hcpcsFiles" value={{file.file_id}}>{{file.file_desc}}</option>
     </select>
@@ -23,12 +20,7 @@
       (click)="launchImporter()"
       [ngClass]="{disabled:!LICENSE_KEY}"
       value="Launch PPE Import Process"
-    />
-    <!--<div class="download">
-      <a href="assets/loans.csv" target="_blank" rel="noopener noreferrer">
-        Download a sample csv file here
-      </a>
-    </div>-->
+    />   
     <textarea id="raw_output" value="">{{results}}</textarea>
   </div>
 

@@ -27,31 +27,29 @@ export class FlatFileImportComponent implements OnInit {
   validRevCodes: any = [];
   validHCPCSCodes: any = [];
   delimiters = [',', '-'];
-
+  hcpcsLookupValue: string = '';
   hcpcsFiles: string[];
    
   
   constructor(private apiService: SandboxApiService) {
-    
+   
   }
   ngOnInit() {
 
-    //get the list of HCPCS file and populate drop-down
-    this.apiService.getHCPCSFiles().subscribe(data => {
-      this.hcpcsFiles = data as string[];
-    }); 
 
+    
+    
+  //get the list of HCPCS file and populate drop-down
+    this.apiService.getHCPCSFiles().subscribe(data => {
+    this.hcpcsFiles = data as string[];
+  }); 
+  
     //get the list of valid rev codes from the SQL database
      this.apiService.getRevCodes(this.fileId).subscribe(data =>{
       this.validRevCodes = data;
     })
 
-    //get the list of valid hcpcs codes from the SQL database
-     this.apiService.getHCPCSCodes(this.fileType).subscribe(data => {
-      this.validHCPCSCodes = data;
-    })
- 
-   
+    
     FlatfileImporter.setVersion(2);
     this.initializeImporter();
 
@@ -122,10 +120,38 @@ export class FlatFileImportComponent implements OnInit {
     
   }
 
+
+  //event handler for the HCPCS lookup drop down 
+  //this gets the selected value from the user to be used 
+  //to pull a valid list of HCPCS codes to validate against later
+  fileSelected(event: any){
+    //grab the selected value
+    this.hcpcsLookupValue = event.target.value;
+
+    //get the list of HCPCS codes based on the selected value from the user
+    if (this.hcpcsLookupValue != '0' ){
+
+      //get the list of valid hcpcs codes from the SQL database
+      this.apiService.getHCPCSCodesNew(this.hcpcsLookupValue).subscribe(data => {
+        this.validHCPCSCodes = data;
+      });
+     
+    }
+
+  }
+
   async launchImporter() {
+
+    //check for a valid FlatFile.IO license key
     if (!this.LICENSE_KEY) {
       return alert("Set LICENSE_KEY on Line 13 before continuing.");
     }
+
+    //check that the user has selected a valid HCPS lookup file from the drop down list
+    if (this.hcpcsLookupValue == 0){
+      return alert("Please select a HCPCS lookup file before continuing.");
+    }
+
     try {
       let results = await this.importer.requestDataFromUser();
       this.importer.displayLoader();
@@ -320,7 +346,6 @@ export class FlatFileImportComponent implements OnInit {
 
 
   
-
      
  
 
