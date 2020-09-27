@@ -9,7 +9,7 @@
         of <code>src/app/app.component.ts</code> before continuing.
       </p>
     </div>
-    <label>HCPCS File:</label>
+    <label>HCPCS Lookup File:</label>
     <select name="ddlHCPCS" (change)="fileSelected($event)">
       <option value="0">--Select A HCPCS File--</option>
       <option *ngFor="let file of hcpcsFiles" value={{file.file_id}}>{{file.file_desc}}</option>

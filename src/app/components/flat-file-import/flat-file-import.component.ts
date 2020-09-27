@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import FlatfileImporter from 'flatfile-csv-importer';
 import { SandboxApiService } from 'src/app/services/sandbox-api-service';
-import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-flat-file-import',
@@ -21,13 +21,12 @@ export class FlatFileImportComponent implements OnInit {
  
   private importer: FlatfileImporter;
 
-  //used to pull the list of revenue codes from SQL
-  fileId: number = 114594;
-  fileType: string = "HCPCS_LU";
+  //fileId: number = 114594;
   validRevCodes: any = [];
   validHCPCSCodes: any = [];
   delimiters = [',', '-'];
   hcpcsLookupValue: string = '';
+  hcpcsLookupDesc: string = '';
   hcpcsFiles: string[];
    
   
@@ -45,7 +44,7 @@ export class FlatFileImportComponent implements OnInit {
   }); 
   
     //get the list of valid rev codes from the SQL database
-     this.apiService.getRevCodes(this.fileId).subscribe(data =>{
+     this.apiService.getRevCodes().subscribe(data =>{
       this.validRevCodes = data;
     })
 
@@ -127,12 +126,14 @@ export class FlatFileImportComponent implements OnInit {
   fileSelected(event: any){
     //grab the selected value
     this.hcpcsLookupValue = event.target.value;
+  
+  
 
     //get the list of HCPCS codes based on the selected value from the user
     if (this.hcpcsLookupValue != '0' ){
 
       //get the list of valid hcpcs codes from the SQL database
-      this.apiService.getHCPCSCodesNew(this.hcpcsLookupValue).subscribe(data => {
+      this.apiService.getHCPCSCodes(this.hcpcsLookupValue).subscribe(data => {
         this.validHCPCSCodes = data;
       });
      
@@ -148,7 +149,7 @@ export class FlatFileImportComponent implements OnInit {
     }
 
     //check that the user has selected a valid HCPS lookup file from the drop down list
-    if (this.hcpcsLookupValue == 0){
+    if (this.hcpcsLookupValue == '0'){
       return alert("Please select a HCPCS lookup file before continuing.");
     }
 
@@ -157,7 +158,7 @@ export class FlatFileImportComponent implements OnInit {
       this.importer.displayLoader();
 
       
-       //download the original file and send data to SQL
+       //download the original file and send raw data to the SQL database
        this.apiService.insertBatch(results.batchId, results.fileName, results.createdAt, results.submittedAt).subscribe(response => {
         this.apiService.insertBatchData(results.batchId, results.validData).subscribe( response => {
           this.importer.displaySuccess("Success!");

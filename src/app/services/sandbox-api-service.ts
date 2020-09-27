@@ -38,28 +38,23 @@ export class SandboxApiService extends ApiService {
 
     return this.http.post<any>(apiURL, data);
   }
+  
 
   insertBatchData(batchId: string, data: any) : Observable<any>{
+    
     const apiURL = environment.webapi_url_base + 'batchData/' + batchId;
     return this.http.post<any>(apiURL, data);
   }
 
-  getHCPCSCodesNew(fileId: string) : Observable<any>{
+  getHCPCSCodes(fileId: string) : Observable<any>{
 
     return this.http.get('http://localhost:59936/api/codes/hcpcs/' +  fileId);
    
   } 
 
-
-  getHCPCSCodes(fileType: string) : Observable<any>{
-
-    return this.http.get('http://localhost:59936/api/codes/hcpcs/' +  fileType);
-   
-  } 
-
-  getRevCodes(fileId: number):Observable<any> {
+  getRevCodes():Observable<any> {
   
-    return this.http.get('http://localhost:59936/api/codes/rev/' +  fileId);
+    return this.http.get('http://localhost:59936/api/codes/rev/' +  environment.rev_code_file_id);
 
   }
 
